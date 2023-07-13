@@ -9,6 +9,7 @@ const {
   IntentReflectorHandler,
   LaunchRequestHandler,
   SessionEndedRequestHandler,
+  ErrorHandler,
 } = require('./handlers/support-handlers')
 
 module.exports.handler = SkillBuilders.custom()
