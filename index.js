@@ -1,7 +1,7 @@
-const { SkillBuilders } = require('ask-sdk-core')
-const { DynamoDbPersistenceAdapter } = require('ask-sdk-dynamodb-persistence-adapter')
-const { DynamoDB } = require('aws-sdk')
-const {
+import { SkillBuilders } from 'ask-sdk-core'
+import { DynamoDbPersistenceAdapter } from 'ask-sdk-dynamodb-persistence-adapter'
+import { DynamoDB } from 'aws-sdk'
+import {
   CancelAndStopIntentHandler,
   FallbackIntentHandler,
   HelloWorldIntentHandler,
@@ -9,9 +9,9 @@ const {
   IntentReflectorHandler,
   LaunchRequestHandler,
   SessionEndedRequestHandler,
-} = require('./handlers/support-handlers')
+} from './handlers/support-handlers'
 
-module.exports.handler = SkillBuilders.custom()
+export const handler = SkillBuilders.custom()
   .addRequestHandlers(
     LaunchRequestHandler,
     HelloWorldIntentHandler,

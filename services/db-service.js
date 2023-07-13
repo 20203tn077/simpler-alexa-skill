@@ -1,4 +1,4 @@
-class DbService {
+export default class DbService {
   #manager
   #attributes
 
@@ -22,5 +22,3 @@ class DbService {
     await this.#manager.savePersistentAttributes()
   }
 }
-
-module.exports = DbService

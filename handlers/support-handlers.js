@@ -1,6 +1,6 @@
-const { getIntentName, handle, handleAny, handleIntent, handleLaunch, handleSessionEnded, result, } = require('../utils/handler-utils')
+import { getIntentName, handle, handleAny, handleIntent, handleLaunch, handleSessionEnded, result, } from '../utils/handler-utils'
 
-const LaunchRequestHandler = {
+export const LaunchRequestHandler = {
   canHandle: handleLaunch,
   handle: handle(() => {
     const speakOutput = 'Welcome, you can say Hello or Help. Which would you like to try?'
@@ -8,7 +8,7 @@ const LaunchRequestHandler = {
   })
 }
 
-const HelloWorldIntentHandler = {
+export const HelloWorldIntentHandler = {
   canHandle: handleIntent('HelloWorldIntent'),
   handle: handle(() => {
     const speakOutput = 'Hello World!'
@@ -16,7 +16,7 @@ const HelloWorldIntentHandler = {
   })
 }
 
-const HelpIntentHandler = {
+export const HelpIntentHandler = {
   canHandle: handleIntent('AMAZON.HelpIntent'),
   handle: handle(() => {
     const speakOutput = 'You can say hello to me! How can I help?'
@@ -24,7 +24,7 @@ const HelpIntentHandler = {
   })
 }
 
-const CancelAndStopIntentHandler = {
+export const CancelAndStopIntentHandler = {
   canHandle: handleIntent('AMAZON.CancelIntent', 'AMAZON.StopIntent'),
   handle: handle(() => {
     const speakOutput = 'Goodbye!'
@@ -32,7 +32,7 @@ const CancelAndStopIntentHandler = {
   })
 }
 
-const FallbackIntentHandler = {
+export const FallbackIntentHandler = {
   canHandle: handleIntent('AMAZON.FallbackIntent'),
   handle: handle(() => {
     const speakOutput = "Sorry, I don't know about that. Please try again."
@@ -40,7 +40,7 @@ const FallbackIntentHandler = {
   })
 }
 
-const SessionEndedRequestHandler = {
+export const SessionEndedRequestHandler = {
   canHandle: handleSessionEnded,
   handle: handle(() => {
     console.log(`~~~~ Session ended: ${JSON.stringify(handlerInput.requestEnvelope)}`)
@@ -48,7 +48,7 @@ const SessionEndedRequestHandler = {
   })
 }
 
-const IntentReflectorHandler = {
+export const IntentReflectorHandler = {
   canHandle: handleIntent(),
   handle: handle(() => {
     const intentName = getIntentName()
@@ -57,22 +57,11 @@ const IntentReflectorHandler = {
   })
 }
 
-const ErrorHandler = {
+export const ErrorHandler = {
   canHandle: handleAny,
   handle: handle((error) => {
     const speakOutput = 'Sorry, I had trouble doing what you asked. Please try again.'
     console.log(`~~~~ Error handled: ${JSON.stringify(error)}`)
     return result(speakOutput, true)
   })
-}
-
-module.exports = {
-  LaunchRequestHandler,
-  HelloWorldIntentHandler,
-  HelpIntentHandler,
-  CancelAndStopIntentHandler,
-  FallbackIntentHandler,
-  SessionEndedRequestHandler,
-  IntentReflectorHandler,
-  ErrorHandler,
 }

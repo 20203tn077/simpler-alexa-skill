@@ -1,6 +1,6 @@
-const DbService = require('../services/db-service') 
+import DbService from '../services/db-service'
 
-class XRepository {
+export default class XRepository {
   #dbService
 
   constructor(handlerInput) {
@@ -37,5 +37,3 @@ class XRepository {
     await this.#dbService.save()
   }
 }
-
-module.exports = XRepository
