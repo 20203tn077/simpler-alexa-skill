@@ -1,4 +1,4 @@
-const { getIntentName, handle, handleAny, handleIntent, handleLaunch, handleSessionEnded, result, } = require('../utils/handler-utils')
+const { getIntentName, handle, handleAny, handleIntent, handleLaunch, handleSessionEnded, result, getRequestEnvelope, } = require('../utils/handler-utils')
 
 const LaunchRequestHandler = {
   canHandle: handleLaunch,
@@ -43,7 +43,7 @@ const FallbackIntentHandler = {
 const SessionEndedRequestHandler = {
   canHandle: handleSessionEnded,
   handle: handle(() => {
-    console.log(`~~~~ Session ended: ${JSON.stringify(handlerInput.requestEnvelope)}`)
+    console.log(`~~~~ Session ended: ${JSON.stringify(getRequestEnvelope)}`)
     return result()
   })
 }

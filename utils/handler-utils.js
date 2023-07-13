@@ -13,6 +13,7 @@ const handle = handlerFunction => (handlerInput, error) => {
 }
 
 const inject = constructor => new constructor(_handlerInput)
+const getRequestEnvelope = () => _handlerInput.requestEnvelope
 const getIntentName = () => _getIntentName(_handlerInput.requestEnvelope)
 const getSlot = slotName => getSlotValue(_handlerInput.requestEnvelope, slotName)
 const isConfirmed = () => _handlerInput.requestEnvelope.request.intent.confirmationStatus === 'CONFIRMED'
@@ -31,6 +32,7 @@ module.exports = {
   handleAny,
   handle,
   inject,
+  getRequestEnvelope,
   getIntentName,
   getSlot,
   isConfirmed,
